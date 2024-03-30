@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "OkE7esrt16r5n4lrC1ejAwfiFrSd5lmHJYsxinC3easmxPseEhndJCz45vT+kC+yDhbMc79q3JMCqG/7VH77VA==",
+  "dgSpecHash": "owoehbDon07orrytqkJEFqOJeb2F+5FW11wwQzWl9kG192zvTKn6XZfQ7pc7MehMFvIyqQG4etzFMfTccjBGsw==",
   "success": true,
   "projectFilePath": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash\\ProjectDash.Backend\\ProjectDash.Persistence\\ProjectDash.Persistence.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\Dyrak\\.nuget\\packages\\linqkit.microsoft.entityframeworkcore\\7.1.5\\linqkit.microsoft.entityframeworkcore.7.1.5.nupkg.sha512",
     "C:\\Users\\Dyrak\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
     "C:\\Users\\Dyrak\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\Dyrak\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\11.1.0\\mediatr.extensions.microsoft.dependencyinjection.11.1.0.nupkg.sha512",
     "C:\\Users\\Dyrak\\.nuget\\packages\\microsoft.data.sqlite.core\\7.0.17\\microsoft.data.sqlite.core.7.0.17.nupkg.sha512",
     "C:\\Users\\Dyrak\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.17\\microsoft.entityframeworkcore.7.0.17.nupkg.sha512",
     "C:\\Users\\Dyrak\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.17\\microsoft.entityframeworkcore.abstractions.7.0.17.nupkg.sha512",
@@ -34,5 +35,16 @@
     "C:\\Users\\Dyrak\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\Dyrak\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package version outside of dependency constraint: MediatR.Extensions.Microsoft.DependencyInjection 11.1.0 requires MediatR (>= 11.0.0 && < 12.0.0) but version MediatR 12.2.0 was resolved.",
+      "libraryId": "MediatR",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
 }
