@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ProjectDash.Persistence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+31f823a23f2b441de5ac9dc6f817536fe79f2c0e")]
 [assembly: System.Reflection.AssemblyProductAttribute("ProjectDash.Persistence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ProjectDash.Persistence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

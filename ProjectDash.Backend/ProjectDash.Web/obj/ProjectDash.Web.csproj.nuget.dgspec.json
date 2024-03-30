@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash.Backend\\ProjectDash.Web\\ProjectDash.Web.csproj": {}
+    "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash\\ProjectDash.Backend\\ProjectDash.Web\\ProjectDash.Web.csproj": {}
   },
   "projects": {
-    "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash.Backend\\ProjectDash.Web\\ProjectDash.Web.csproj": {
+    "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash\\ProjectDash.Backend\\ProjectDash.Web\\ProjectDash.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash.Backend\\ProjectDash.Web\\ProjectDash.Web.csproj",
+        "projectUniqueName": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash\\ProjectDash.Backend\\ProjectDash.Web\\ProjectDash.Web.csproj",
         "projectName": "ProjectDash.Web",
-        "projectPath": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash.Backend\\ProjectDash.Web\\ProjectDash.Web.csproj",
+        "projectPath": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash\\ProjectDash.Backend\\ProjectDash.Web\\ProjectDash.Web.csproj",
         "packagesPath": "C:\\Users\\Dyrak\\.nuget\\packages\\",
-        "outputPath": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash.Backend\\ProjectDash.Web\\obj\\",
+        "outputPath": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash\\ProjectDash.Backend\\ProjectDash.Web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dyrak\\AppData\\Roaming\\NuGet\\NuGet.Config",

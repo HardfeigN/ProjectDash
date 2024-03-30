@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash.Backend\\ProjectDash.Application\\ProjectDash.Application.csproj": {}
+    "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash\\ProjectDash.Backend\\ProjectDash.Application\\ProjectDash.Application.csproj": {}
   },
   "projects": {
-    "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash.Backend\\ProjectDash.Application\\ProjectDash.Application.csproj": {
+    "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash\\ProjectDash.Backend\\ProjectDash.Application\\ProjectDash.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash.Backend\\ProjectDash.Application\\ProjectDash.Application.csproj",
+        "projectUniqueName": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash\\ProjectDash.Backend\\ProjectDash.Application\\ProjectDash.Application.csproj",
         "projectName": "ProjectDash.Application",
-        "projectPath": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash.Backend\\ProjectDash.Application\\ProjectDash.Application.csproj",
+        "projectPath": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash\\ProjectDash.Backend\\ProjectDash.Application\\ProjectDash.Application.csproj",
         "packagesPath": "C:\\Users\\Dyrak\\.nuget\\packages\\",
-        "outputPath": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash.Backend\\ProjectDash.Application\\obj\\",
+        "outputPath": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash\\ProjectDash.Backend\\ProjectDash.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dyrak\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash.Backend\\ProjectDash.Domain\\ProjectDash.Domain.csproj": {
-                "projectPath": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash.Backend\\ProjectDash.Domain\\ProjectDash.Domain.csproj"
+              "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash\\ProjectDash.Backend\\ProjectDash.Domain\\ProjectDash.Domain.csproj": {
+                "projectPath": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash\\ProjectDash.Backend\\ProjectDash.Domain\\ProjectDash.Domain.csproj"
               }
             }
           }
@@ -68,14 +68,14 @@
         }
       }
     },
-    "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash.Backend\\ProjectDash.Domain\\ProjectDash.Domain.csproj": {
+    "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash\\ProjectDash.Backend\\ProjectDash.Domain\\ProjectDash.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash.Backend\\ProjectDash.Domain\\ProjectDash.Domain.csproj",
+        "projectUniqueName": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash\\ProjectDash.Backend\\ProjectDash.Domain\\ProjectDash.Domain.csproj",
         "projectName": "ProjectDash.Domain",
-        "projectPath": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash.Backend\\ProjectDash.Domain\\ProjectDash.Domain.csproj",
+        "projectPath": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash\\ProjectDash.Backend\\ProjectDash.Domain\\ProjectDash.Domain.csproj",
         "packagesPath": "C:\\Users\\Dyrak\\.nuget\\packages\\",
-        "outputPath": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash.Backend\\ProjectDash.Domain\\obj\\",
+        "outputPath": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash\\ProjectDash.Backend\\ProjectDash.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dyrak\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -108,6 +108,12 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.17, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2Zv3WQ1A8+zf1k1qQ+y8IZyfiqmucDMFYOUJ2NFJk7voTJoaC/RcO79l1eqyM0Rj806jtON9QdjhZnaUPY+noQ==",
+  "dgSpecHash": "kQVll/CkGIbfTwdl5VdXkK0sk81+xtDXwyFMMQl/MS6J/y3u+sz3wbsUiHDxx6QEjoD6AC1iEshEbqiC+Z73tw==",
   "success": true,
-  "projectFilePath": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash.Backend\\ProjectDash.Web\\ProjectDash.Web.csproj",
+  "projectFilePath": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash\\ProjectDash.Backend\\ProjectDash.Web\\ProjectDash.Web.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

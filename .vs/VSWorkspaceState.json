@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ProjectDash.Backend"
+    "\\ProjectDash.Backend",
+    "\\ProjectDash.Backend\\ProjectDash.Domain"
   ],
   "SelectedNode": "\\ProjectDash.Backend\\ProjectDash.Backend.sln",
   "PreviewInSolutionExplorer": false

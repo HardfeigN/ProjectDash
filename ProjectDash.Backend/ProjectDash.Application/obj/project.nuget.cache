@@ -1,8 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "kYl0HPZn3V0mREBSLKVdXiDZgp8ZnqMIo7zcAcGFGOGFMBN82bn9ru7L1fCCUQk8jYSEdDUPzZm1FGsaixbeag==",
+  "dgSpecHash": "6DZyrrRO3l9gHOY6Jn4tuFqGvtG5QWtOATDc30LmUVtxehUJqMOy5lzFQWL+lyI7zGNiboRhxGVedFqqG9R5ww==",
   "success": true,
-  "projectFilePath": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash.Backend\\ProjectDash.Application\\ProjectDash.Application.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\labs\\asp.net core\\tz_sibers\\ProjectDash\\ProjectDash.Backend\\ProjectDash.Application\\ProjectDash.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Dyrak\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.17\\microsoft.entityframeworkcore.7.0.17.nupkg.sha512",
+    "C:\\Users\\Dyrak\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.17\\microsoft.entityframeworkcore.abstractions.7.0.17.nupkg.sha512",
+    "C:\\Users\\Dyrak\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.17\\microsoft.entityframeworkcore.analyzers.7.0.17.nupkg.sha512",
+    "C:\\Users\\Dyrak\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\Dyrak\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
+    "C:\\Users\\Dyrak\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
+    "C:\\Users\\Dyrak\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\Dyrak\\.nuget\\packages\\microsoft.extensions.logging\\7.0.0\\microsoft.extensions.logging.7.0.0.nupkg.sha512",
+    "C:\\Users\\Dyrak\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.0\\microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\Dyrak\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",
+    "C:\\Users\\Dyrak\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
