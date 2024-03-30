@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
-
+﻿
 namespace ProjectDash.Domain
 {
     public class Project
@@ -13,6 +11,5 @@ namespace ProjectDash.Domain
         public DateTime? CompletionDate { get; set; }
         public int Priority { get; set; }
         public Guid ProjectLeaderId { get; set; }
-        public Employee ProjectLeader { get; set; }
     }
 }

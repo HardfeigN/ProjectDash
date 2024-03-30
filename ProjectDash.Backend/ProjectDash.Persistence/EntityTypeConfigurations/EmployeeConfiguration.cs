@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ProjectDash.Domain;
-using System;
 
 namespace ProjectDash.Persistence.EntityTypeConfigurations
 {
