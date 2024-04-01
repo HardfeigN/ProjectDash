@@ -6,7 +6,6 @@ namespace ProjectDash.Domain.Interfaces
     {
         DbSet<Employee> Employees { get; set; }
         DbSet<Project> Projects { get; set; }
-        DbSet<ProjectEmployees> ProjectEmployees { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

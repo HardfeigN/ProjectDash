@@ -11,5 +11,6 @@ namespace ProjectDash.Domain
         public DateTime? CompletionDate { get; set; }
         public int Priority { get; set; }
         public Guid ProjectLeaderId { get; set; }
+        public List<Employee> Employee { get; set; }
     }
 }

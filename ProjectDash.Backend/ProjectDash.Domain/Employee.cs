@@ -8,5 +8,6 @@ namespace ProjectDash.Domain
         public string Surname { get; set; }
         public string Patronymic { get; set; }
         public string Email { get; set; }
+        public List<Project> Project { get; set; }
     }
 }
