@@ -14,17 +14,15 @@ namespace ProjectDash.Application.ProjectDocuments.Commands.UpdateProjectDocumen
 
         public async Task Handle(UpdateProjectDocumentCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _dbContext.ProjectDocuments
+            var entity = await _dbContext.ProjectDocument
                 .FirstOrDefaultAsync(projectDocument =>
                     projectDocument.Id == request.Id, cancellationToken);
-
             if (entity == null)
             {
                 throw new NotFoundException(nameof(ProjectDocument), request.Id);
             }
 
             entity.Name = request.Name;
-            entity.ProjectId = request.ProjectId;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
         }

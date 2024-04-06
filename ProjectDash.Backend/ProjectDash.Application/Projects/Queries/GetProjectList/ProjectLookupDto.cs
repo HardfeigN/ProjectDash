@@ -10,8 +10,8 @@ namespace ProjectDash.Application.Projects.Queries.GetProjectList
         public string Name { get; set; }
         public string Performer { get; set; }
         public string Customer { get; set; }
-        public DateTime CreationDate { get; set; }
-        public DateTime? CompletionDate { get; set; }
+        public DateOnly StartDate { get; set; }
+        public DateOnly EndDate { get; set; }
         public int Priority { get; set; }
         public Guid ProjectLeaderId { get; set; }
 
@@ -26,10 +26,10 @@ namespace ProjectDash.Application.Projects.Queries.GetProjectList
                     opt => opt.MapFrom(project => project.Performer))
                 .ForMember(projectDto => projectDto.Customer,
                     opt => opt.MapFrom(project => project.Customer))
-                .ForMember(projectDto => projectDto.CreationDate,
-                    opt => opt.MapFrom(project => project.CreationDate))
-                .ForMember(projectDto => projectDto.CompletionDate,
-                    opt => opt.MapFrom(project => project.CompletionDate))
+                .ForMember(projectDto => projectDto.StartDate,
+                    opt => opt.MapFrom(project => project.StartDate))
+                .ForMember(projectDto => projectDto.EndDate,
+                    opt => opt.MapFrom(project => project.EndDate))
                 .ForMember(projectDto => projectDto.Priority,
                     opt => opt.MapFrom(project => project.Priority))
                 .ForMember(projectDto => projectDto.ProjectLeaderId,

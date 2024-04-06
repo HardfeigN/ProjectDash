@@ -14,14 +14,23 @@ namespace ProjectDash.Application.ProjectEmployees.Commands.DeleteProjectEmploye
 
         public async Task Handle(DeleteProjectEmployeeCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _dbContext.ProjectEmployees
-                .FindAsync(new ProjectEmployee { ProjectId = request.ProjectId, EmployeeId = request.EmployeeId }, cancellationToken);
+            var entity = await _dbContext.ProjectEmployee
+                .FindAsync(new object[] { request.EmployeeId, request.ProjectId }, cancellationToken);
             if (entity == null)
             {
-                throw new NotFoundException(nameof(ProjectEmployee), new object[] { request.ProjectId, request.EmployeeId });
+                throw new NotFoundException(nameof(ProjectEmployee), new object[] { request.EmployeeId, request.ProjectId });
             }
-
-            _dbContext.ProjectEmployees.Remove(entity);
+            var project = await _dbContext.Projects
+                .FindAsync(new object[] { request.ProjectId }, cancellationToken);
+            if (project == null)
+            {
+                throw new NotFoundException(nameof(Project), request.ProjectId );
+            }
+            if (project.ProjectLeaderId == request.EmployeeId)
+            {
+                throw new Exception("Cannot remove a project leader from a team.");
+            }
+            _dbContext.ProjectEmployee.Remove(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }

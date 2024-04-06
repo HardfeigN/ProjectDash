@@ -15,15 +15,15 @@ namespace ProjectDash.Application.Employees.Queries.GetEmployeeDetails
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Employee, EmployeeDetailsVm>()
-                .ForMember(employeeVm => employeeVm.Id,
+                .ForMember(employeeDetailsVm => employeeDetailsVm.Id,
                     opt => opt.MapFrom(employee => employee.Id))
-                .ForMember(employeeVm => employeeVm.Name,
+                .ForMember(employeeDetailsVm => employeeDetailsVm.Name,
                     opt => opt.MapFrom(employee => employee.Name))
-                .ForMember(employeeVm => employeeVm.Surname,
+                .ForMember(employeeDetailsVm => employeeDetailsVm.Surname,
                     opt => opt.MapFrom(employee => employee.Surname))
-                .ForMember(employeeVm => employeeVm.Patronymic,
+                .ForMember(employeeDetailsVm => employeeDetailsVm.Patronymic,
                     opt => opt.MapFrom(employee => employee.Patronymic))
-                .ForMember(employeeVm => employeeVm.Email,
+                .ForMember(employeeDetailsVm => employeeDetailsVm.Email,
                     opt => opt.MapFrom(employee => employee.Email));
         }
     }

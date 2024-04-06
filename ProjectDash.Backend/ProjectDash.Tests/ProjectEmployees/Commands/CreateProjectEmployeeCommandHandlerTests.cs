@@ -24,7 +24,7 @@ namespace ProjectDash.Tests.ProjectEmployees.Commands
 
             //Assert
             Assert.NotNull(
-                await Context.ProjectEmployees.SingleOrDefaultAsync(pe =>
+                await Context.ProjectEmployee.SingleOrDefaultAsync(pe =>
                 pe.ProjectId == ProjectDashContextFactory.ProjectIdForPECreate &&
                 pe.EmployeeId == ProjectDashContextFactory.EmployeeIdForPECreate));
         }

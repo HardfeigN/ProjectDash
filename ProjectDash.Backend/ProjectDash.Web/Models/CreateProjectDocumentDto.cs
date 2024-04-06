@@ -1,24 +1,25 @@
 ﻿using AutoMapper;
-using ProjectDash.Application.ProjectDocuments.Queries.GetProjectDocumentList;
-using ProjectDash.Domain;
+using ProjectDash.Application.Common.Mappings;
+using ProjectDash.Application.ProjectDocuments.Commands.CreateProjectDocument;
 
 namespace ProjectDash.Web.Models
 {
-    public class CreateProjectDocumentDto
+    public class CreateProjectDocumentDto : IMapWith<CreateProjectDocumentCommand>
     {
         public string Name { get; set; }
-        public Project Project { get; set; }
         public Guid ProjectId { get; set; }
+        public string? Extension { get; set; }
+        public IFormFile Document { get; set; }
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<ProjectDocument, ProjectDocumentLookupDto>()
-                .ForMember(projectDocumentVm => projectDocumentVm.Id,
-                    opt => opt.MapFrom(projectDocument => projectDocument.Id))
-                .ForMember(projectDocumentVm => projectDocumentVm.Name,
-                    opt => opt.MapFrom(projectDocument => projectDocument.Name))
-                .ForMember(projectDocumentVm => projectDocumentVm.Id,
-                    opt => opt.MapFrom(projectDocumentVm => projectDocumentVm.ProjectId));
+            profile.CreateMap<CreateProjectDocumentDto, CreateProjectDocumentCommand>()
+                .ForMember(createPDCommand => createPDCommand.Name,
+                    opt => opt.MapFrom(createPDDto => createPDDto.Name))
+                .ForMember(createPDCommand => createPDCommand.ProjectId,
+                    opt => opt.MapFrom(createPDDto => createPDDto.ProjectId))
+                .ForMember(createPDCommand => createPDCommand.Extension,
+                    opt => opt.MapFrom(createPDDto => createPDDto.Extension));
         }
     }
 }

@@ -16,7 +16,7 @@ namespace ProjectDash.Application.ProjectDocuments.Queries.GetProjectDocumentDet
 
         public async Task<ProjectDocumentDetailsVm> Handle(GetProjectDocumentDetailsQuery request, CancellationToken cancellationToken)
         {
-            var entity = await _dbContext.ProjectDocuments
+            var entity = await _dbContext.ProjectDocument
                 .FirstOrDefaultAsync(projectDocument =>
                     projectDocument.Id == request.Id, cancellationToken);
 

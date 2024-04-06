@@ -7,9 +7,7 @@ namespace ProjectDash.Application.ProjectEmployees.Queries.GetProjectEmployeeLis
     public class ProjectEmployeeLookupDto : IMapWith<ProjectEmployee>
     {
         public Guid ProjectId { get; set; }
-        public Project Project { get; set; }
         public Guid EmployeeId { get; set; }
-        public Employee Employee { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -17,11 +15,7 @@ namespace ProjectDash.Application.ProjectEmployees.Queries.GetProjectEmployeeLis
                 .ForMember(projectEmployeeDto => projectEmployeeDto.ProjectId,
                     opt => opt.MapFrom(projectEmployee => projectEmployee.ProjectId))
                 .ForMember(projectEmployeeDto => projectEmployeeDto.EmployeeId,
-                    opt => opt.MapFrom(projectEmployee => projectEmployee.EmployeeId))
-                .ForMember(projectEmployeeDto => projectEmployeeDto.Employee,
-                    opt => opt.MapFrom(projectEmployee => projectEmployee.Employee))
-                .ForMember(projectEmployeeDto => projectEmployeeDto.Project,
-                    opt => opt.MapFrom(projectEmployee => projectEmployee.Project));
+                    opt => opt.MapFrom(projectEmployee => projectEmployee.EmployeeId));
         }
     }
 }

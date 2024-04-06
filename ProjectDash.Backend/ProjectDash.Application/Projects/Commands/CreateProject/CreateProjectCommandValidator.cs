@@ -13,8 +13,6 @@ namespace ProjectDash.Application.Projects.Commands.CreateProject
             RuleFor(createProjectCommand =>
                 createProjectCommand.Customer).NotEmpty().MaximumLength(80);
             RuleFor(createProjectCommand =>
-                createProjectCommand.CreationDate).NotEqual(default(DateTime));
-            RuleFor(createProjectCommand =>
                 createProjectCommand.Priority).NotEqual(default(int));
             RuleFor(createProjectCommand =>
                 createProjectCommand.ProjectLeaderId).NotEqual(Guid.Empty);

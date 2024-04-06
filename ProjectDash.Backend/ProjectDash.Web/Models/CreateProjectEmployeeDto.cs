@@ -13,10 +13,10 @@ namespace ProjectDash.Web.Models
         {
 
             profile.CreateMap<CreateProjectEmployeeDto, CreateProjectEmployeeCommand>()
-                .ForMember(projectEmployeeDto => projectEmployeeDto.ProjectId,
-                    opt => opt.MapFrom(projectEmployee => projectEmployee.ProjectId))
-                .ForMember(projectEmployeeDto => projectEmployeeDto.EmployeeId,
-                    opt => opt.MapFrom(projectEmployee => projectEmployee.EmployeeId));
+                .ForMember(createPECommand => createPECommand.ProjectId,
+                    opt => opt.MapFrom(createPEDto => createPEDto.ProjectId))
+                .ForMember(createPECommand => createPECommand.EmployeeId,
+                    opt => opt.MapFrom(createPEDto => createPEDto.EmployeeId));
         }
     }
 }

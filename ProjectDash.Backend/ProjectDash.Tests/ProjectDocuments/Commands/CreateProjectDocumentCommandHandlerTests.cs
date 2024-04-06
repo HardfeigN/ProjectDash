@@ -12,20 +12,22 @@ namespace ProjectDash.Tests.ProjectDocuments.Commands
         {
             //Arrange
             var handler = new CreateProjectDocumentCommandHandler(Context);
-            var name = "project_document.docx";
+            var name = "project_document";
+            var extension = ".docx";
 
             //Act
             var pdId = await handler.Handle(
                 new CreateProjectDocumentCommand
                 {
                     Name = name,
+                    Extension = extension,
                     ProjectId = ProjectDashContextFactory.ProjectIdForDetails
                 },
                 CancellationToken.None);
 
             //Assert
             Assert.NotNull(
-                await Context.ProjectDocuments.SingleOrDefaultAsync(pd =>
+                await Context.ProjectDocument.SingleOrDefaultAsync(pd =>
                     pd.Id == pdId &&
                     pd.Name == name &&
                     pd.ProjectId == ProjectDashContextFactory.ProjectIdForDetails));

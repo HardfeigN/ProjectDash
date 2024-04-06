@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProjectDash.Application.Common.Exceptions;
 using ProjectDash.Application.Projects.Commands.CreateProject;
 using ProjectDash.Tests.Common;
 
@@ -14,6 +15,8 @@ namespace ProjectDash.Tests.Projects.Commands
             var name = "project name";
             var performer = "performer";
             var customer = "customer";
+            var startDate = new DateOnly(2023, 05, 28);
+            var endDate = new DateOnly(2024, 01, 02);
             var priority = 12;
 
             //Act
@@ -23,6 +26,8 @@ namespace ProjectDash.Tests.Projects.Commands
                     Name = name,
                     Performer = performer,
                     Customer = customer,
+                    StartDate = startDate,
+                    EndDate = endDate,
                     Priority = priority,
                     ProjectLeaderId = ProjectDashContextFactory.ProjectLeaderIdForCreate
                 },
@@ -35,9 +40,27 @@ namespace ProjectDash.Tests.Projects.Commands
                 proj.Name == name &&
                 proj.Performer == performer &&
                 proj.Customer == customer &&
-                proj.CreationDate == DateTime.Today &&
+                proj.StartDate == startDate &&
+                proj.EndDate == endDate &&
                 proj.Priority == priority &&
                 proj.ProjectLeaderId == ProjectDashContextFactory.ProjectLeaderIdForCreate));
+        }
+
+        [Fact]
+        public async Task CreateProjectCommandHandler_FailOnWrongProjectLeaderId()
+        {
+            //Arrange
+            var handler = new CreateProjectCommandHandler(Context);
+
+            //Act
+            //Assert
+            await Assert.ThrowsAsync<NotFoundException>(async () =>
+                await handler.Handle(
+                    new CreateProjectCommand
+                    {
+                        ProjectLeaderId = Guid.NewGuid()
+                    },
+                    CancellationToken.None));
         }
     }
 }

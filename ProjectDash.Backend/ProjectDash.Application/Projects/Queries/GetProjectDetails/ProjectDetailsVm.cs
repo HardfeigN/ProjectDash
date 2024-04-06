@@ -1,16 +1,17 @@
 ﻿using AutoMapper;
+using ProjectDash.Application.Common.Mappings;
 using ProjectDash.Domain;
 
 namespace ProjectDash.Application.Projects.Queries.GetProjectDetails
 {
-    public class ProjectDetailsVm
+    public class ProjectDetailsVm : IMapWith<Project>
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Performer { get; set; }
         public string Customer { get; set; }
-        public DateTime CreationDate { get; set; }
-        public DateTime? CompletionDate { get; set; }
+        public DateOnly StartDate { get; set; }
+        public DateOnly EndDate { get; set; }
         public int Priority { get; set; }
         public Guid ProjectLeaderId { get; set; }
 
@@ -25,10 +26,10 @@ namespace ProjectDash.Application.Projects.Queries.GetProjectDetails
                     opt => opt.MapFrom(project => project.Performer))
                 .ForMember(projectVm => projectVm.Customer,
                     opt => opt.MapFrom(project => project.Customer))
-                .ForMember(projectVm => projectVm.CreationDate,
-                    opt => opt.MapFrom(project => project.CreationDate))
-                .ForMember(projectVm => projectVm.CompletionDate,
-                    opt => opt.MapFrom(project => project.CompletionDate))
+                .ForMember(projectVm => projectVm.StartDate,
+                    opt => opt.MapFrom(project => project.StartDate))
+                .ForMember(projectVm => projectVm.EndDate,
+                    opt => opt.MapFrom(project => project.EndDate))
                 .ForMember(projectVm => projectVm.Priority,
                     opt => opt.MapFrom(project => project.Priority))
                 .ForMember(projectVm => projectVm.ProjectLeaderId,

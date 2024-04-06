@@ -8,18 +8,17 @@ namespace ProjectDash.Application.ProjectDocuments.Queries.GetProjectDocumentLis
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public Project Project { get; set; }
         public Guid ProjectId { get; set; }
 
         public void Mapping(Profile profile)
         {
             profile.CreateMap<ProjectDocument, ProjectDocumentLookupDto>()
-                .ForMember(projectDocumentVm => projectDocumentVm.Id,
+                .ForMember(projectDocumentDto => projectDocumentDto.Id,
                     opt => opt.MapFrom(projectDocument => projectDocument.Id))
-                .ForMember(projectDocumentVm => projectDocumentVm.Name,
+                .ForMember(projectDocumentDto => projectDocumentDto.Name,
                     opt => opt.MapFrom(projectDocument => projectDocument.Name))
-                .ForMember(projectDocumentVm => projectDocumentVm.Id,
-                    opt => opt.MapFrom(projectDocumentVm => projectDocumentVm.ProjectId));
+                .ForMember(projectDocumentDto => projectDocumentDto.ProjectId,
+                    opt => opt.MapFrom(projectDocument => projectDocument.ProjectId));
         }
     }
 }

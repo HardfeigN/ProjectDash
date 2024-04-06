@@ -25,10 +25,11 @@ namespace ProjectDash.Application.ProjectDocuments.Commands.CreateProjectDocumen
             {
                 Id = Guid.NewGuid(),
                 Name = request.Name,
-                ProjectId = request.ProjectId
+                ProjectId = request.ProjectId,
+                Extension = request.Extension
             };
 
-            await _dbContext.ProjectDocuments.AddAsync(projectDocument, cancellationToken);
+            await _dbContext.ProjectDocument.AddAsync(projectDocument, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
 
             return projectDocument.Id;

@@ -41,6 +41,5 @@ namespace ProjectDash.Tests.Projects.Commands
                     },
                     CancellationToken.None));
         }
-
     }
 }

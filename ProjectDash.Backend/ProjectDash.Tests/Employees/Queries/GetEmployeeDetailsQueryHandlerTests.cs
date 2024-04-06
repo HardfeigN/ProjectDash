@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ProjectDash.Application.Common.Exceptions;
 using ProjectDash.Application.Employees.Queries.GetEmployeeDetails;
 using ProjectDash.Persistence;
 using ProjectDash.Tests.Common;
@@ -37,6 +38,23 @@ namespace ProjectDash.Tests.Employees.Queries
             result.Surname.ShouldBe("Surname3");
             result.Patronymic.ShouldBe("Patronymic3");
             result.Email.ShouldBe("email3@email.com");
+        }
+
+        [Fact]
+        public async Task GetEmployeeDetailsQueryHandler_FailOnWrongId()
+        {
+            //Arrange
+            var handler = new GetEmployeeDetailsQueryHandler(Context, Mapper);
+
+            //Act
+            //Assert
+            await Assert.ThrowsAsync<NotFoundException>(async () =>
+                await handler.Handle(
+                    new GetEmployeeDetailsQuery
+                    {
+                        Id = Guid.NewGuid()
+                    },
+                    CancellationToken.None));
         }
     }
 }

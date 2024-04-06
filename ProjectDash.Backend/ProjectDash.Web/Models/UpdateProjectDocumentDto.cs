@@ -1,25 +1,21 @@
 ﻿using AutoMapper;
-using ProjectDash.Application.ProjectDocuments.Queries.GetProjectDocumentList;
-using ProjectDash.Domain;
+using ProjectDash.Application.Common.Mappings;
+using ProjectDash.Application.ProjectDocuments.Commands.UpdateProjectDocument;
 
 namespace ProjectDash.Web.Models
 {
-    public class UpdateProjectDocumentDto
+    public class UpdateProjectDocumentDto : IMapWith<UpdateProjectDocumentCommand>
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
-        public Project Project { get; set; }
-        public Guid ProjectId { get; set; }
+        public string? Name { get; set; }
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<ProjectDocument, ProjectDocumentLookupDto>()
-                .ForMember(projectDocumentVm => projectDocumentVm.Id,
-                    opt => opt.MapFrom(projectDocument => projectDocument.Id))
-                .ForMember(projectDocumentVm => projectDocumentVm.Name,
-                    opt => opt.MapFrom(projectDocument => projectDocument.Name))
-                .ForMember(projectDocumentVm => projectDocumentVm.Id,
-                    opt => opt.MapFrom(projectDocumentVm => projectDocumentVm.ProjectId));
+            profile.CreateMap<UpdateProjectDocumentDto, UpdateProjectDocumentCommand>()
+                .ForMember(updatePDCommand => updatePDCommand.Id,
+                    opt => opt.MapFrom(updatePDDto => updatePDDto.Id))
+                .ForMember(updatePDCommand => updatePDCommand.Name,
+                    opt => opt.MapFrom(updatePDDto => updatePDDto.Name));
         }
     }
 }

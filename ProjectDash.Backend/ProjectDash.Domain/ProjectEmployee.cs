@@ -1,6 +1,6 @@
 ﻿namespace ProjectDash.Domain
 {
-    public  class ProjectEmployee // many to many relationship
+    public  class ProjectEmployee // many to many relationship between Project and Employee
     {
         public Guid ProjectId { get; set; }
         public Project Project { get; set; }

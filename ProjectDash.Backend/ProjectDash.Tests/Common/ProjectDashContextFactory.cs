@@ -10,7 +10,27 @@ namespace ProjectDash.Tests.Common
         public static Guid EmployeeIdForUpdate = Guid.Parse("D71C755E-1DD3-4DB3-BA69-593EE6C1050B");
         public static Guid EmployeeIdForDetails = Guid.Parse("F51C45CB-6A14-4025-88F7-43711C04DED7");
 
+        public static Guid EmployeeIdForPECreate = Guid.Parse("AA7A7A8D-16CE-40A6-9494-5BBED71EFCA7");
+        public static Guid EmployeeIdForPEDelete = Guid.Parse("43C48CAB-5895-427B-8E17-F4FA0206315E");
+        public static Guid EmployeeIdForPESearch = Guid.Parse("43C48CAB-5895-427B-8E17-F4FA0206315E");
+
+        public static Guid ProjectLeaderIdForCreate = Guid.Parse("43C48CAB-5895-427B-8E17-F4FA0206315E");
+        public static Guid ProjectLeaderIdForUpdate = Guid.Parse("562F2BD0-9715-4439-9043-60C3D1C9B4DC");
+        public static Guid ProjectLeaderIdForSearch = Guid.Parse("43C48CAB-5895-427B-8E17-F4FA0206315E");
+
         public static Guid ProjectIdForEmployeeSearch = Guid.Parse("73055044-A362-4616-91A0-FDE24BDDCDC6");
+        public static Guid ProjectIdForUpdate = Guid.Parse("73055044-A362-4616-91A0-FDE24BDDCDC6");
+        public static Guid ProjectIdForDelete = Guid.Parse("EED35383-1715-474E-B982-9A85C04E0F83");
+        public static Guid ProjectIdForDetails = Guid.Parse("73055044-A362-4616-91A0-FDE24BDDCDC6");
+
+        public static Guid ProjectIdForPECreate = Guid.Parse("EED35383-1715-474E-B982-9A85C04E0F83");
+        public static Guid ProjectIdForPEDelete = Guid.Parse("73055044-A362-4616-91A0-FDE24BDDCDC6");
+        public static Guid ProjectIdForPESearch = Guid.Parse("73055044-A362-4616-91A0-FDE24BDDCDC6");
+        public static Guid ProjectIdForPDSearch = Guid.Parse("73055044-A362-4616-91A0-FDE24BDDCDC6");
+
+        public static Guid DocumentIdForUpdate = Guid.Parse("9E11868B-3288-45BD-BFF6-C66A1F467AFE");
+        public static Guid DocumentIdForDelete = Guid.Parse("2DF8961D-0596-4CC7-AC38-3CD97380B59C");
+        public static Guid DocumentIdForDetails = Guid.Parse("6A455EB6-F119-473A-9F59-A08A4C8D0EDA");
 
         public static ProjectDashDbContext Create()
         {
@@ -63,7 +83,7 @@ namespace ProjectDash.Tests.Common
                 new Employee
                 {
                     Id = Guid.Parse("562F2BD0-9715-4439-9043-60C3D1C9B4DC"),
-                    Name = "Name6",
+                    Name = "Employee",
                     Surname = "Surname6",
                     Patronymic = "Patronymic6",
                     Email = "email6@email.com"
@@ -77,8 +97,8 @@ namespace ProjectDash.Tests.Common
                     Name = "Project1",
                     Performer = "Performer1",
                     Customer = "Customer1",
-                    CreationDate = new DateTime(2023, 10, 8),
-                    CompletionDate = new DateTime(2023, 12, 5),
+                    StartDate = new DateOnly(2023, 10, 8),
+                    EndDate = new DateOnly(2023, 12, 5),
                     Priority = 10,
                     ProjectLeaderId = Guid.Parse("562F2BD0-9715-4439-9043-60C3D1C9B4DC")
                 },
@@ -88,8 +108,8 @@ namespace ProjectDash.Tests.Common
                     Name = "Project2",
                     Performer = "Performer2",
                     Customer = "Customer2",
-                    CreationDate = new DateTime(2023, 11, 23),
-                    CompletionDate = DateTime.Today,
+                    StartDate = new DateOnly(2023, 11, 23),
+                    EndDate = new DateOnly(2024, 04, 04),
                     Priority = 20,
                     ProjectLeaderId = Guid.Parse("43C48CAB-5895-427B-8E17-F4FA0206315E"),
                 },
@@ -99,47 +119,50 @@ namespace ProjectDash.Tests.Common
                     Name = "Project3",
                     Performer = "Performer3",
                     Customer = "Customer3",
-                    CreationDate = new DateTime(2024, 1, 19),
-                    CompletionDate = new DateTime(2024, 4, 1),
+                    StartDate = new DateOnly(2024, 1, 19),
+                    EndDate = new DateOnly(2024, 4, 1),
                     Priority = 40,
                     ProjectLeaderId = Guid.Parse("43C48CAB-5895-427B-8E17-F4FA0206315E")
                 }
                 );
 
-            context.ProjectEmployees.AddRange(
-                    new ProjectEmployees() { EmployeeId = Guid.Parse("562F2BD0-9715-4439-9043-60C3D1C9B4DC"), ProjectId = Guid.Parse("73055044-A362-4616-91A0-FDE24BDDCDC6") },
-                    new ProjectEmployees() { EmployeeId = Guid.Parse("43C48CAB-5895-427B-8E17-F4FA0206315E"), ProjectId = Guid.Parse("73055044-A362-4616-91A0-FDE24BDDCDC6") },
-                    new ProjectEmployees() { EmployeeId = Guid.Parse("AA7A7A8D-16CE-40A6-9494-5BBED71EFCA7"), ProjectId = Guid.Parse("73055044-A362-4616-91A0-FDE24BDDCDC6") },
-                    new ProjectEmployees() { EmployeeId = Guid.Parse("43C48CAB-5895-427B-8E17-F4FA0206315E"), ProjectId = Guid.Parse("A1520153-3AD8-4942-B6CD-E77116460E55") },
-                    new ProjectEmployees() { EmployeeId = Guid.Parse("F51C45CB-6A14-4025-88F7-43711C04DED7"), ProjectId = Guid.Parse("A1520153-3AD8-4942-B6CD-E77116460E55") },
-                    new ProjectEmployees() { EmployeeId = Guid.Parse("43C48CAB-5895-427B-8E17-F4FA0206315E"), ProjectId = Guid.Parse("EED35383-1715-474E-B982-9A85C04E0F83") },
-                    new ProjectEmployees() { EmployeeId = Guid.Parse("D71C755E-1DD3-4DB3-BA69-593EE6C1050B"), ProjectId = Guid.Parse("EED35383-1715-474E-B982-9A85C04E0F83") },
-                    new ProjectEmployees() { EmployeeId = Guid.Parse("AA7A7A8D-16CE-40A6-9494-5BBED71EFCA7"), ProjectId = Guid.Parse("EED35383-1715-474E-B982-9A85C04E0F83") }
+            context.ProjectEmployee.AddRange(
+                    new ProjectEmployee() { EmployeeId = Guid.Parse("562F2BD0-9715-4439-9043-60C3D1C9B4DC"), ProjectId = Guid.Parse("73055044-A362-4616-91A0-FDE24BDDCDC6") },
+                    new ProjectEmployee() { EmployeeId = Guid.Parse("43C48CAB-5895-427B-8E17-F4FA0206315E"), ProjectId = Guid.Parse("73055044-A362-4616-91A0-FDE24BDDCDC6") },
+                    new ProjectEmployee() { EmployeeId = Guid.Parse("AA7A7A8D-16CE-40A6-9494-5BBED71EFCA7"), ProjectId = Guid.Parse("73055044-A362-4616-91A0-FDE24BDDCDC6") },
+                    new ProjectEmployee() { EmployeeId = Guid.Parse("43C48CAB-5895-427B-8E17-F4FA0206315E"), ProjectId = Guid.Parse("A1520153-3AD8-4942-B6CD-E77116460E55") },
+                    new ProjectEmployee() { EmployeeId = Guid.Parse("F51C45CB-6A14-4025-88F7-43711C04DED7"), ProjectId = Guid.Parse("A1520153-3AD8-4942-B6CD-E77116460E55") },
+                    new ProjectEmployee() { EmployeeId = Guid.Parse("43C48CAB-5895-427B-8E17-F4FA0206315E"), ProjectId = Guid.Parse("EED35383-1715-474E-B982-9A85C04E0F83") },
+                    new ProjectEmployee() { EmployeeId = Guid.Parse("D71C755E-1DD3-4DB3-BA69-593EE6C1050B"), ProjectId = Guid.Parse("EED35383-1715-474E-B982-9A85C04E0F83") }
                 );
 
-            context.ProjectDocuments.AddRange(
+            context.ProjectDocument.AddRange(
                     new ProjectDocument()
                     {
                         Id = Guid.Parse("9E11868B-3288-45BD-BFF6-C66A1F467AFE"),
                         Name = "Document1",
+                        Extension = ".docx",
                         ProjectId = Guid.Parse("73055044-A362-4616-91A0-FDE24BDDCDC6")
                     },
                     new ProjectDocument()
                     {
                         Id = Guid.Parse("6A455EB6-F119-473A-9F59-A08A4C8D0EDA"),
                         Name = "Document2",
+                        Extension = ".docx",
                         ProjectId = Guid.Parse("73055044-A362-4616-91A0-FDE24BDDCDC6")
                     },
                     new ProjectDocument()
                     {
                         Id = Guid.Parse("2DF8961D-0596-4CC7-AC38-3CD97380B59C"),
                         Name = "Document3",
+                        Extension = ".doc",
                         ProjectId = Guid.Parse("EED35383-1715-474E-B982-9A85C04E0F83")
                     },
                     new ProjectDocument()
                     {
                         Id = Guid.Parse("79D1DA33-1682-4B35-BDD9-C4F972621237"),
                         Name = "Document4",
+                        Extension = ".pdf",
                         ProjectId = Guid.Parse("A1520153-3AD8-4942-B6CD-E77116460E55")
                     }
                 );

@@ -10,8 +10,6 @@ namespace ProjectDash.Application.ProjectDocuments.Commands.UpdateProjectDocumen
                updateProjectDocumentCommand.Id).NotEqual(Guid.Empty);
             RuleFor(updateProjectDocumentCommand =>
                 updateProjectDocumentCommand.Name).NotEmpty().MaximumLength(50);
-            RuleFor(updateProjectDocumentCommand =>
-               updateProjectDocumentCommand.ProjectId).NotEqual(Guid.Empty);
         }
     }
 }

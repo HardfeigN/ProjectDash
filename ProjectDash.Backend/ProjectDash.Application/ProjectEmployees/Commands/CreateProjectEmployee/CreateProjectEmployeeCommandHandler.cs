@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using ProjectDash.Application.Common.Exceptions;
 using ProjectDash.Domain;
 using ProjectDash.Domain.Interfaces;
@@ -11,7 +12,7 @@ namespace ProjectDash.Application.ProjectEmployees.Commands.CreateProjectEmploye
         public CreateProjectEmployeeCommandHandler(IProjectDashDbContext dbContext) =>
             _dbContext = dbContext;
 
-        async Task IRequestHandler<CreateProjectEmployeeCommand>.Handle(CreateProjectEmployeeCommand request, CancellationToken cancellationToken)
+        public async Task Handle(CreateProjectEmployeeCommand request, CancellationToken cancellationToken)
         {
             var employee = await _dbContext.Employees
                 .FindAsync(request.EmployeeId);
@@ -29,11 +30,11 @@ namespace ProjectDash.Application.ProjectEmployees.Commands.CreateProjectEmploye
 
             var projectEmployee = new ProjectEmployee
             {
-                EmployeeId = request.EmployeeId,
-                ProjectId = request.ProjectId
+                ProjectId = request.ProjectId,
+                EmployeeId = request.EmployeeId
             };
 
-            await _dbContext.ProjectEmployees.AddAsync(projectEmployee, cancellationToken);
+            await _dbContext.ProjectEmployee.AddAsync(projectEmployee, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }

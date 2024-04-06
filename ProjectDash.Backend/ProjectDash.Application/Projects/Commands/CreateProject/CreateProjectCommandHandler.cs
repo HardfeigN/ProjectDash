@@ -21,18 +21,30 @@ namespace ProjectDash.Application.Projects.Commands.CreateProject
                 throw new NotFoundException(nameof(Employee), request.ProjectLeaderId);
             }
 
+            if(request.StartDate > request.EndDate)
+            {
+                throw new ArgumentException("The Start Project Date cannot be greater than End Project Date.");
+            }
+
             var project = new Project
             {
                 Id = Guid.NewGuid(),
                 Name = request.Name,
                 Performer = request.Performer,
                 Customer = request.Customer,
-                CreationDate = DateTime.Now,
+                StartDate = request.StartDate,
+                EndDate = request.EndDate,
                 Priority = request.Priority,
                 ProjectLeaderId = request.ProjectLeaderId
             };
+            var projectEmployee = new ProjectEmployee
+            {
+                ProjectId = project.Id,
+                EmployeeId = project.ProjectLeaderId
+            };
 
             await _dbContext.Projects.AddAsync(project, cancellationToken);
+            await _dbContext.ProjectEmployee.AddAsync(projectEmployee, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
 
             return project.Id;

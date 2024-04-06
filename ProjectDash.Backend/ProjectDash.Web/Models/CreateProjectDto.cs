@@ -9,28 +9,28 @@ namespace ProjectDash.WebAPI.Models
         public string Name { get; set; }
         public string Performer { get; set; }
         public string Customer { get; set; }
-        public DateTime CreationDate { get; set; }
-        public DateTime? CompletionDate { get; set; }
+        public DateOnly StartDate { get; set; }
+        public DateOnly EndDate { get; set; }
         public int Priority { get; set; }
         public Guid ProjectLeaderId { get; set; }
 
         public void Mapping(Profile profile)
         {
             profile.CreateMap<CreateProjectDto, CreateProjectCommand>()
-                .ForMember(projectCommand => projectCommand.Name,
-                    opt => opt.MapFrom(projectDto => projectDto.Name))
-                .ForMember(projectCommand => projectCommand.Performer,
-                    opt => opt.MapFrom(projectDto => projectDto.Performer))
-                .ForMember(projectCommand => projectCommand.Customer,
-                    opt => opt.MapFrom(projectDto => projectDto.Customer))
-                .ForMember(projectCommand => projectCommand.CreationDate,
-                    opt => opt.MapFrom(projectDto => projectDto.CreationDate))
-                .ForMember(projectCommand => projectCommand.CreationDate,
-                    opt => opt.MapFrom(projectDto => projectDto.CreationDate))
-                .ForMember(projectCommand => projectCommand.Priority,
-                    opt => opt.MapFrom(projectDto => projectDto.Priority))
-                .ForMember(projectCommand => projectCommand.ProjectLeaderId,
-                    opt => opt.MapFrom(projectDto => projectDto.ProjectLeaderId));
+                .ForMember(createProjectCommand => createProjectCommand.Name,
+                    opt => opt.MapFrom(createProjectDto => createProjectDto.Name))
+                .ForMember(createProjectCommand => createProjectCommand.Performer,
+                    opt => opt.MapFrom(createProjectDto => createProjectDto.Performer))
+                .ForMember(createProjectCommand => createProjectCommand.Customer,
+                    opt => opt.MapFrom(createProjectDto => createProjectDto.Customer))
+                .ForMember(createProjectCommand => createProjectCommand.StartDate,
+                    opt => opt.MapFrom(createProjectDto => createProjectDto.StartDate))
+                .ForMember(createProjectCommand => createProjectCommand.EndDate,
+                    opt => opt.MapFrom(createProjectDto => createProjectDto.EndDate))
+                .ForMember(createProjectCommand => createProjectCommand.Priority,
+                    opt => opt.MapFrom(createProjectDto => createProjectDto.Priority))
+                .ForMember(createProjectCommand => createProjectCommand.ProjectLeaderId,
+                    opt => opt.MapFrom(createProjectDto => createProjectDto.ProjectLeaderId));
         }
     }
 }

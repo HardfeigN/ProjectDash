@@ -14,14 +14,14 @@ namespace ProjectDash.Web.Models
         public void Mapping(Profile profile)
         {
             profile.CreateMap<CreateEmployeeDto, CreateEmployeeCommand>()
-                .ForMember(employeeCommand => employeeCommand.Name,
-                    opt => opt.MapFrom(employeeDto => employeeDto.Name))
-                .ForMember(employeeCommand => employeeCommand.Surname,
-                    opt => opt.MapFrom(employeeDto => employeeDto.Surname))
-                .ForMember(employeeCommand => employeeCommand.Patronymic,
-                    opt => opt.MapFrom(employeeDto => employeeDto.Patronymic))
-                .ForMember(employeeCommand => employeeCommand.Email,
-                    opt => opt.MapFrom(employeeDto => employeeDto.Email));
+                .ForMember(createEmployeeCommand => createEmployeeCommand.Name,
+                    opt => opt.MapFrom(createEmployeeDto => createEmployeeDto.Name))
+                .ForMember(createEmployeeCommand => createEmployeeCommand.Surname,
+                    opt => opt.MapFrom(createEmployeeDto => createEmployeeDto.Surname))
+                .ForMember(createEmployeeCommand => createEmployeeCommand.Patronymic,
+                    opt => opt.MapFrom(createEmployeeDto => createEmployeeDto.Patronymic))
+                .ForMember(createEmployeeCommand => createEmployeeCommand.Email,
+                    opt => opt.MapFrom(createEmployeeDto => createEmployeeDto.Email));
         }
     }
 }

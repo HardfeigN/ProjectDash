@@ -13,7 +13,8 @@ namespace ProjectDash.Persistence.EntityTypeConfigurations
             builder.Property(project => project.Name).HasMaxLength(50).IsRequired();
             builder.Property(project => project.Performer).HasMaxLength(80).IsRequired();
             builder.Property(project => project.Customer).HasMaxLength(80).IsRequired();
-            builder.Property(project => project.CreationDate).IsRequired();
+            builder.Property(project => project.StartDate).IsRequired();
+            builder.Property(project => project.EndDate).IsRequired();
             builder.Property(project => project.Priority).IsRequired();
             builder.Property(project => project.ProjectLeaderId).IsRequired();
         }

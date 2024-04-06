@@ -9,6 +9,8 @@ namespace ProjectDash.Persistence
     {
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<ProjectEmployee> ProjectEmployee { get; set; }
+        public DbSet<ProjectDocument> ProjectDocument { get; set; }
 
         public ProjectDashDbContext(DbContextOptions<ProjectDashDbContext> options) 
             : base(options) { }
@@ -17,19 +19,8 @@ namespace ProjectDash.Persistence
         {
             builder.ApplyConfiguration(new EmployeeConfiguration());
             builder.ApplyConfiguration(new ProjectConfiguration());
-            builder.Entity<Project>()
-                .HasMany(e => e.Employee)
-                .WithMany(e => e.Project)
-                .UsingEntity<Dictionary<string, object>>(
-                "ProjectEmployees",
-                j => j
-                    .HasOne<Employee>()
-                    .WithMany()
-                    .HasForeignKey("EmployeeId"),
-                j => j
-                    .HasOne<Project>()
-                    .WithMany()
-                    .HasForeignKey("ProjectId"));
+            builder.ApplyConfiguration(new ProjectEmployeesConfiguration());
+            builder.ApplyConfiguration(new ProjectDocumentsConfiguration());
             base.OnModelCreating(builder);
         }
     }

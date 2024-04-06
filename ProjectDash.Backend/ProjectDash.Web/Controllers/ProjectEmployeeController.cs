@@ -20,15 +20,19 @@ namespace ProjectDash.Web.Controllers
         /// </summary>
         /// <remarks>
         /// Sample request:
-        /// GET /ProjectEmployee
+        /// GET /api/ProjectEmployee/GetAll/
+        /// {
+        ///     EmployeeId: "AAA06B56-8B02-4F4F-A15A-88AC8BE340CE",
+        ///     ProjectId: "2FAE4FAB-74C0-4EB9-833E-FE22EA0328B6",
+        /// }
         /// </remarks>
         /// <returns>Returns ProjectEmployeeListVm</returns>
         /// <response code="200">Success</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ProjectEmployeeListVm>> GetAll()
+        public async Task<ActionResult<ProjectEmployeeListVm>> GetAll([FromQuery] GetProjectEmployeeListDto getProjectEmployeeListDto)
         {
-            var query = new GetProjectEmployeeListQuery();
+            var query = _mapper.Map<GetProjectEmployeeListQuery>(getProjectEmployeeListDto);
             var vm = await Mediator.Send(query);
             return Ok(vm);
         }
@@ -38,7 +42,7 @@ namespace ProjectDash.Web.Controllers
         /// </summary>
         /// <remarks>
         /// Sample request:
-        /// Post /ProjectEmployee
+        /// Post /api/ProjectEmployee/Create/
         /// {   
         ///     EmployeeId: "A61F45F0-3FC5-41EA-8A93-BCEF300BAD01",
         ///     ProjectId: "D14F9508-FAF7-49EC-8203-B84B0CE66B71"
@@ -61,7 +65,7 @@ namespace ProjectDash.Web.Controllers
         /// </summary>
         /// <remarks>
         /// Sample request:
-        /// DELETE /ProjectEmployee
+        /// DELETE /api/ProjectEmployee/Delete/
         /// </remarks>
         /// <param name="deleteProjectEmployeeDto">DeleteProjectEmployeeDto object</param>
         /// <returns>Returns NoContent</returns>

@@ -34,7 +34,8 @@ namespace ProjectDash.Tests.ProjectDocuments.Queries
 
             //Assert
             result.ShouldBeOfType<ProjectDocumentDetailsVm>();
-            result.Name.ShouldBe("Document2.docx");
+            result.Name.ShouldBe("Document2");
+            result.Extension.ShouldBe(".docx");
             result.ProjectId.ShouldBe(ProjectDashContextFactory.ProjectIdForPDSearch);
         }
 

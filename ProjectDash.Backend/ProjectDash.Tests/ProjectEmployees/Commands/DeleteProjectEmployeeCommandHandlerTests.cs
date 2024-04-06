@@ -20,7 +20,7 @@ namespace ProjectDash.Tests.ProjectEmployees.Commands
             CancellationToken.None);
 
             //Assert
-            Assert.Null(Context.ProjectEmployees.SingleOrDefault(pe =>
+            Assert.Null(Context.ProjectEmployee.SingleOrDefault(pe =>
                 pe.ProjectId == ProjectDashContextFactory.ProjectIdForPEDelete &&
                 pe.EmployeeId == ProjectDashContextFactory.EmployeeIdForPEDelete));
         }

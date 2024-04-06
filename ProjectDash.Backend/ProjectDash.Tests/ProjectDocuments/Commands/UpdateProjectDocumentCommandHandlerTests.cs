@@ -19,14 +19,13 @@ namespace ProjectDash.Tests.ProjectDocuments.Commands
                 new UpdateProjectDocumentCommand
                 {
                     Id = ProjectDashContextFactory.DocumentIdForUpdate,
-                    Name = name,
-                    ProjectId = ProjectDashContextFactory.ProjectIdForDetails
+                    Name = name
                 },
                 CancellationToken.None);
 
             //Assert
             Assert.NotNull(
-                await Context.ProjectDocuments.SingleOrDefaultAsync(pd =>
+                await Context.ProjectDocument.SingleOrDefaultAsync(pd =>
                     pd.Id == ProjectDashContextFactory.DocumentIdForUpdate &&
                     pd.Name == name &&
                     pd.ProjectId == ProjectDashContextFactory.ProjectIdForDetails));
@@ -46,28 +45,7 @@ namespace ProjectDash.Tests.ProjectDocuments.Commands
                     new UpdateProjectDocumentCommand
                     {
                         Id = Guid.NewGuid(),
-                        Name = name,
-                        ProjectId = ProjectDashContextFactory.ProjectIdForDetails
-                    },
-                    CancellationToken.None));
-        }
-
-        [Fact]
-        public async Task UpdateProjectDocumentCommandHandler_FailOnWrongProjectId()
-        {
-            //Arrange
-            var handler = new UpdateProjectDocumentCommandHandler(Context);
-            var name = "new_project_document.docx";
-
-            //Act
-            //Assert
-            await Assert.ThrowsAsync<NotFoundException>(async () =>
-                await handler.Handle(
-                    new UpdateProjectDocumentCommand
-                    {
-                        Id = ProjectDashContextFactory.DocumentIdForUpdate,
-                        Name = name,
-                        ProjectId = Guid.NewGuid()
+                        Name = name
                     },
                     CancellationToken.None));
         }

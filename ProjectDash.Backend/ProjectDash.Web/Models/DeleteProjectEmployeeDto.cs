@@ -13,10 +13,10 @@ namespace ProjectDash.Web.Models
         {
 
             profile.CreateMap<DeleteProjectEmployeeDto, DeleteProjectEmployeeCommand>()
-                .ForMember(projectEmployeeDto => projectEmployeeDto.ProjectId,
-                    opt => opt.MapFrom(projectEmployee => projectEmployee.ProjectId))
-                .ForMember(projectEmployeeDto => projectEmployeeDto.EmployeeId,
-                    opt => opt.MapFrom(projectEmployee => projectEmployee.EmployeeId));
+                .ForMember(deletePECommand => deletePECommand.ProjectId,
+                    opt => opt.MapFrom(deletePEDto => deletePEDto.ProjectId))
+                .ForMember(deletePECommand => deletePECommand.EmployeeId,
+                    opt => opt.MapFrom(deletePEDto => deletePEDto.EmployeeId));
         }
     }
 }

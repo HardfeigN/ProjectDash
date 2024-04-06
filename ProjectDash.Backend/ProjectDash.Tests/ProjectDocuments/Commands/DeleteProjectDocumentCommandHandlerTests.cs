@@ -16,17 +16,16 @@ namespace ProjectDash.Tests.ProjectDocuments.Commands
             await handler.Handle(new DeleteProjectDocumentCommand
             {
                 Id = ProjectDashContextFactory.DocumentIdForDelete,
-                ProjectId = ProjectDashContextFactory.ProjectIdForPECreate
             },
             CancellationToken.None);
 
             //Assert
-            Assert.Null(Context.ProjectDocuments.SingleOrDefault(pd =>
+            Assert.Null(Context.ProjectDocument.SingleOrDefault(pd =>
                 pd.Id == ProjectDashContextFactory.DocumentIdForDelete));
         }
 
         [Fact]
-        public async Task DeleteProjectDocumentCommandHandler_FailOnWrongIds()
+        public async Task DeleteProjectDocumentCommandHandler_FailOnWrongId()
         {
             //Arrange
             var handler = new DeleteProjectDocumentCommandHandler(Context);
@@ -38,15 +37,6 @@ namespace ProjectDash.Tests.ProjectDocuments.Commands
                     new DeleteProjectDocumentCommand
                     {
                         Id = Guid.NewGuid(),
-                        ProjectId = ProjectDashContextFactory.ProjectIdForPECreate
-                    },
-                    CancellationToken.None));
-            await Assert.ThrowsAsync<NotFoundException>(async () =>
-                await handler.Handle(
-                    new DeleteProjectDocumentCommand
-                    {
-                        Id = ProjectDashContextFactory.DocumentIdForDelete,
-                        ProjectId = Guid.NewGuid()
                     },
                     CancellationToken.None));
         }

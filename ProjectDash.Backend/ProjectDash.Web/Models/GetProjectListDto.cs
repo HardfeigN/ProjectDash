@@ -9,10 +9,10 @@ namespace ProjectDash.Web.Models
         public string? Name { get; set; }
         public string? Performer { get; set; }
         public string? Customer { get; set; }
-        public DateTime? CreationDateStart { get; set; }
-        public DateTime? CreationDateEnd { get; set; }
-        public DateTime? CompletionDateStart { get; set; }
-        public DateTime? CompletionDateEnd { get; set; }
+        public DateOnly? StartDateLeft { get; set; }
+        public DateOnly? StartDateRight { get; set; }
+        public DateOnly? EndDateLeft { get; set; }
+        public DateOnly? EndDateRight { get; set; }
         public int? Priority { get; set; }
         public Guid? ProjectLeaderId { get; set; }
         public Guid? EmployeeId { get; set; }
@@ -26,14 +26,14 @@ namespace ProjectDash.Web.Models
                     opt => opt.MapFrom(getProjectListDto => getProjectListDto.Performer))
                 .ForMember(getProjectListQuery => getProjectListQuery.Customer,
                     opt => opt.MapFrom(getProjectListDto => getProjectListDto.Customer))
-                .ForMember(getProjectListQuery => getProjectListQuery.CreationDateStart,
-                    opt => opt.MapFrom(getProjectListDto => getProjectListDto.CreationDateStart))
-                .ForMember(getProjectListQuery => getProjectListQuery.CreationDateEnd,
-                    opt => opt.MapFrom(getProjectListDto => getProjectListDto.CreationDateEnd))
-                .ForMember(getProjectListQuery => getProjectListQuery.CompletionDateStart,
-                    opt => opt.MapFrom(getProjectListDto => getProjectListDto.CompletionDateStart))
-                .ForMember(getProjectListQuery => getProjectListQuery.CompletionDateEnd,
-                    opt => opt.MapFrom(getProjectListDto => getProjectListDto.CompletionDateEnd))
+                .ForMember(getProjectListQuery => getProjectListQuery.StartDateLeft,
+                    opt => opt.MapFrom(getProjectListDto => getProjectListDto.StartDateLeft))
+                .ForMember(getProjectListQuery => getProjectListQuery.StartDateRight,
+                    opt => opt.MapFrom(getProjectListDto => getProjectListDto.StartDateRight))
+                .ForMember(getProjectListQuery => getProjectListQuery.EndDateLeft,
+                    opt => opt.MapFrom(getProjectListDto => getProjectListDto.EndDateLeft))
+                .ForMember(getProjectListQuery => getProjectListQuery.EndDateRight,
+                    opt => opt.MapFrom(getProjectListDto => getProjectListDto.EndDateRight))
                 .ForMember(getProjectListQuery => getProjectListQuery.Priority,
                     opt => opt.MapFrom(getProjectListDto => getProjectListDto.Priority))
                 .ForMember(getProjectListQuery => getProjectListQuery.ProjectLeaderId,

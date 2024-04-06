@@ -7,10 +7,11 @@ namespace ProjectDash.Domain
         public string Name { get; set; }
         public string Performer { get; set; }
         public string Customer { get; set; }
-        public DateTime CreationDate { get; set; }
-        public DateTime? CompletionDate { get; set; }
+        public DateOnly StartDate { get; set; }
+        public DateOnly EndDate { get; set; }
         public int Priority { get; set; }
         public Guid ProjectLeaderId { get; set; }
-        public List<Employee> Employee { get; set; }
+        public ICollection<ProjectEmployee> Employees { get; set; }
+        public ICollection<ProjectDocument> ProjectDocuments { get; set; }
     }
 }

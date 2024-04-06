@@ -15,7 +15,9 @@ namespace ProjectDash.Application.Projects.Commands.UpdateProject
             RuleFor(updateProjectCommand =>
                 updateProjectCommand.Customer).NotEmpty().MaximumLength(80);
             RuleFor(updateProjectCommand =>
-                updateProjectCommand.CreationDate).NotEqual(default(DateTime));
+                updateProjectCommand.StartDate).NotEqual(default(DateOnly));
+            RuleFor(updateProjectCommand =>
+                updateProjectCommand.EndDate).NotEqual(default(DateOnly));
             RuleFor(updateProjectCommand =>
                 updateProjectCommand.Priority).NotEqual(default(int));
             RuleFor(updateProjectCommand =>

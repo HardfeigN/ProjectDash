@@ -3,6 +3,7 @@ using AutoMapper.QueryableExtensions;
 using LinqKit;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using ProjectDash.Application.Common.Exceptions;
 using ProjectDash.Domain;
 using ProjectDash.Domain.Interfaces;
 
@@ -19,28 +20,49 @@ namespace ProjectDash.Application.Projects.Queries.GetProjectList
         {
             var predicate = PredicateBuilder.New<Project>(true);
             if(!string.IsNullOrEmpty(request.Name))
-                predicate = predicate.Or(project => 
-                    project.Name.Contains(request.Name));
+                predicate = predicate.And(project =>
+                    EF.Functions.Like(project.Name, $"%{request.Name}%"));
             if (!string.IsNullOrEmpty(request.Performer))
-                predicate = predicate.Or(project => 
-                    project.Performer.Contains(request.Performer));
+                predicate = predicate.And(project =>
+                    EF.Functions.Like(project.Performer, $"%{request.Performer}%"));
             if (!string.IsNullOrEmpty(request.Customer))
-                predicate = predicate.Or(project => 
-                    project.Customer.Contains(request.Customer));
-            if (request.CreationDateStart != default && request.CreationDateEnd != default)
-                predicate = predicate.Or(project =>
-                    project.CreationDate >= request.CreationDateStart && 
-                    project.CreationDate <= request.CreationDateEnd);
-            if (request.CompletionDateStart != default && request.CompletionDateEnd != default)
-                predicate = predicate.Or(project => 
-                    project.CompletionDate >= request.CompletionDateStart && 
-                    project.CompletionDate <= request.CompletionDateEnd);
+                predicate = predicate.And(project =>
+                    EF.Functions.Like(project.Customer, $"%{request.Customer}%"));
+            if (request.StartDateLeft != default && request.StartDateRight != default)
+                predicate = predicate.And(project =>
+                    project.StartDate >= request.StartDateLeft && 
+                    project.StartDate <= request.StartDateRight);
+            if (request.EndDateLeft != default && request.EndDateRight != default)
+                predicate = predicate.And(project => 
+                    project.EndDate >= request.EndDateLeft && 
+                    project.EndDate <= request.EndDateRight);
             if (request.Priority != default)
-                predicate = predicate.Or(project => 
+                predicate = predicate.And(project => 
                     project.Priority == request.Priority);
             if (request.ProjectLeaderId != default)
-                predicate = predicate.Or(project => 
+            {
+                var employee = await _dbContext.Employees
+                    .FirstOrDefaultAsync(project =>
+                        project.Id == request.ProjectLeaderId, cancellationToken);
+                if (employee == null)
+                {
+                    throw new NotFoundException(nameof(Employee), request.EmployeeId);
+                }
+                predicate = predicate.And(project => 
                     project.ProjectLeaderId == request.ProjectLeaderId);
+            }
+            if (request.EmployeeId != default)
+            {
+                var employee = await _dbContext.Employees
+                    .FirstOrDefaultAsync(project =>
+                        project.Id == request.EmployeeId, cancellationToken);
+                if (employee == null)
+                {
+                    throw new NotFoundException(nameof(Employee), request.EmployeeId);
+                }
+                predicate = predicate.And(project => 
+                    project.Employees.Any(projectEmployees => projectEmployees.EmployeeId == request.EmployeeId));
+            }
 
             var projectQuery = await _dbContext.Projects
                 .Where(predicate)

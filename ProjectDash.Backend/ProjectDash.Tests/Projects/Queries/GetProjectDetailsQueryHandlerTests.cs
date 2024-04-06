@@ -8,7 +8,6 @@ using Shouldly;
 namespace ProjectDash.Tests.Projects.Queries
 {
     [Collection("QueryCollection")]
-
     public class GetProjectDetailsQueryHandlerTests
     {
         private readonly ProjectDashDbContext Context;
@@ -35,13 +34,14 @@ namespace ProjectDash.Tests.Projects.Queries
 
             //Assert
             result.ShouldBeOfType<ProjectDetailsVm>();
-            result.Name.ShouldBe("Project2");
-            result.Performer.ShouldBe("Performer2");
-            result.Customer.ShouldBe("Customer2");
-            result.CreationDate.ShouldBe(new DateTime(2023, 11, 23));
-            result.CompletionDate.ShouldBe(DateTime.Today);
-            result.Priority.ShouldBe(20);
-            result.ProjectLeaderId.ShouldBe(ProjectDashContextFactory.ProjectLeaderIdForSearch);             
+            result.Id.ShouldBe(ProjectDashContextFactory.ProjectIdForDetails);
+            result.Name.ShouldBe("Project1");
+            result.Performer.ShouldBe("Performer1");
+            result.Customer.ShouldBe("Customer1");
+            result.StartDate.ShouldBe(new DateOnly(2023, 10, 8));
+            result.EndDate.ShouldBe(new DateOnly(2023, 12, 5));
+            result.Priority.ShouldBe(10);
+            result.ProjectLeaderId.ShouldBe(ProjectDashContextFactory.ProjectLeaderIdForUpdate);             
         }
 
         [Fact]
