@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectDash.Application.ProjectDocuments.Commands.CreateProjectDocument;
 using ProjectDash.Application.ProjectDocuments.Commands.DeleteProjectDocument;
-using ProjectDash.Application.ProjectDocuments.Commands.UpdateProjectDocument;
 using ProjectDash.Application.ProjectDocuments.Queries.GetProjectDocumentDetails;
 using ProjectDash.Application.ProjectDocuments.Queries.GetProjectDocumentList;
 using ProjectDash.Domain;
 using ProjectDash.Web.Models;
+using System.Text.RegularExpressions;
 
 namespace ProjectDash.Web.Controllers
 {
@@ -83,7 +83,7 @@ namespace ProjectDash.Web.Controllers
             var vm = await Mediator.Send(query);
 
             string webRootPath = _webHostEnvironment.WebRootPath;
-            string filePath = webRootPath + $"\\uploads\\{nameof(ProjectDocument)}\\" + $"{vm.ProjectId}\\{vm.Id}{vm.Extension}";
+            string filePath = webRootPath + $"\\uploads\\{nameof(ProjectDocument)}\\" + $"{vm.ProjectId}\\{vm.Name}{vm.Extension}";
             if (System.IO.File.Exists(filePath))
                 return File(System.IO.File.ReadAllBytes(filePath), "multipart/form-data", System.IO.Path.GetFileName(filePath));
             else return NotFound();
@@ -110,54 +110,38 @@ namespace ProjectDash.Web.Controllers
         [HttpPost]
         [Consumes("multipart/form-data")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<Guid>> Create([FromForm] CreateProjectDocumentDto createProjectDocumentDto)
+        public async Task<ActionResult<List<Guid>>> Create([FromForm] CreateProjectDocumentDto createProjectDocumentDto)
         {
-            string extension = Path.GetExtension(createProjectDocumentDto.Document.FileName);
-            string webRootPath = _webHostEnvironment.WebRootPath;
-            string fileFolder = webRootPath + $"\\uploads\\{nameof(ProjectDocument)}\\" + $"{createProjectDocumentDto.ProjectId}\\";
-            createProjectDocumentDto.Extension = extension;
-
-            var command = _mapper.Map<CreateProjectDocumentCommand>(createProjectDocumentDto);
-            var projectDocumentId = await Mediator.Send(command);
-            
-            if(projectDocumentId != Guid.Empty)
+            List<Guid> projectDocumentIds = new List<Guid>();
+            foreach (var file in createProjectDocumentDto.Documents)
             {
-                if (!Directory.Exists(fileFolder))
+                string webRootPath = _webHostEnvironment.WebRootPath;
+                string fileFolder = webRootPath + $"\\uploads\\{nameof(ProjectDocument)}\\" + $"{createProjectDocumentDto.ProjectId}\\";
+                var document = new CreateProjectDocumentDto
                 {
-                    Directory.CreateDirectory(fileFolder);
-                }
-                using (var fileStrem = new FileStream(Path.Combine(fileFolder, projectDocumentId + extension), FileMode.Create))
-                {
-                    createProjectDocumentDto.Document.CopyTo(fileStrem);
+                    ProjectId = createProjectDocumentDto.ProjectId,
+                    Extension = Path.GetExtension(file.FileName),
+                    Name = Regex.Replace(Path.GetFileNameWithoutExtension(file.FileName), @"[^\w\d\s]", "").Trim()
                 };
+
+                var command = _mapper.Map<CreateProjectDocumentCommand>(document);
+                var projectDocumentId = await Mediator.Send(command);
+            
+                if(projectDocumentId != Guid.Empty)
+                {
+                    if (!Directory.Exists(fileFolder))
+                    {
+                        Directory.CreateDirectory(fileFolder);
+                    }
+                    using (var fileStrem = new FileStream(Path.Combine(fileFolder, document.Name + document.Extension), FileMode.Create))
+                    {
+                        file.CopyTo(fileStrem);
+                    };
+                }
+                projectDocumentIds.Add(projectDocumentId);
             }
 
-            return Ok(projectDocumentId);
-        }
-
-        /// <summary>
-        /// Updates the ProjectDocument 
-        /// </summary>
-        /// <remarks>
-        /// Sample request:
-        /// PUT /api/ProjectDocument/Update/
-        /// {   
-        ///     Id: "D14F9508-FAF7-49EC-8203-B84B0CE66B71",
-        ///     Name: "new file name",
-        ///     ProjectId: "D14F9508-FAF7-49EC-8203-B84B0CE66B71"
-        /// }
-        /// </remarks>
-        /// <param name="updateProjectDocumentDto">UpdateProjectDocumentDto object</param>
-        /// <returns>Returns NoContent</returns>
-        /// <response code="204">Success</response>
-        [HttpPut]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Update([FromBody] UpdateProjectDocumentDto updateProjectDocumentDto)
-        {
-            var command = _mapper.Map<UpdateProjectDocumentCommand>(updateProjectDocumentDto);
-            await Mediator.Send(command);
-
-            return NoContent();
+            return Ok(projectDocumentIds);
         }
 
         /// <summary>
@@ -186,7 +170,7 @@ namespace ProjectDash.Web.Controllers
                 string webRootPath = _webHostEnvironment.WebRootPath;
                 string fileFolder = webRootPath + $"\\uploads\\{nameof(ProjectDocument)}\\" + $"{projectDocument.ProjectId}\\";
                 var filePath = Path.Combine(fileFolder, projectDocument.Id + projectDocument.Extension);
-                if (System.IO.File.Exists(Path.Combine(fileFolder, projectDocument.Id + projectDocument.Extension)))
+                if (System.IO.File.Exists(Path.Combine(fileFolder, projectDocument.Name + projectDocument.Extension)))
                 {
                     System.IO.File.Delete(filePath);
                 }

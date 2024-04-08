@@ -6,10 +6,10 @@ namespace ProjectDash.Web.Models
 {
     public class CreateProjectDocumentDto : IMapWith<CreateProjectDocumentCommand>
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public Guid ProjectId { get; set; }
         public string? Extension { get; set; }
-        public IFormFile Document { get; set; }
+        public IFormFileCollection Documents { get; set; }
 
         public void Mapping(Profile profile)
         {
