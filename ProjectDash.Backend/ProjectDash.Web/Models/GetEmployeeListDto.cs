@@ -7,6 +7,7 @@ namespace ProjectDash.Web.Models
     public class GetEmployeeListDto : IMapWith<GetEmployeeListQuery>
     {
         public Guid? ProjectId { get; set; }
+        public string? TextField { get; set; }
         public string? Name { get; set; }
         public string? Surname { get; set; }
         public string? Patronymic { get; set; }
@@ -17,6 +18,8 @@ namespace ProjectDash.Web.Models
             profile.CreateMap<GetEmployeeListDto, GetEmployeeListQuery>()
                 .ForMember(getEmployeeListQuery => getEmployeeListQuery.ProjectId,
                     opt => opt.MapFrom(getEmployeeListDto => getEmployeeListDto.ProjectId))
+                .ForMember(getEmployeeListQuery => getEmployeeListQuery.TextField,
+                    opt => opt.MapFrom(getEmployeeListDto => getEmployeeListDto.TextField))
                 .ForMember(getEmployeeListQuery => getEmployeeListQuery.Name,
                     opt => opt.MapFrom(getEmployeeListDto => getEmployeeListDto.Name))
                 .ForMember(getEmployeeListQuery => getEmployeeListQuery.Surname,
