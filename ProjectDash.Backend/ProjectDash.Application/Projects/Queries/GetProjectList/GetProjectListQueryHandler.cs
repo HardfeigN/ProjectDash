@@ -21,13 +21,13 @@ namespace ProjectDash.Application.Projects.Queries.GetProjectList
             var predicate = PredicateBuilder.New<Project>(true);
             if(!string.IsNullOrEmpty(request.Name))
                 predicate = predicate.And(project =>
-                    EF.Functions.Like(project.Name, $"%{request.Name}%"));
+                    EF.Functions.Like(project.Name.ToLower(), $"%{request.Name.ToLower()}%"));
             if (!string.IsNullOrEmpty(request.Performer))
                 predicate = predicate.And(project =>
-                    EF.Functions.Like(project.Performer, $"%{request.Performer}%"));
+                    EF.Functions.Like(project.Performer.ToLower(), $"%{request.Performer.ToLower()}%"));
             if (!string.IsNullOrEmpty(request.Customer))
                 predicate = predicate.And(project =>
-                    EF.Functions.Like(project.Customer, $"%{request.Customer}%"));
+                    EF.Functions.Like(project.Customer.ToLower(), $"%{request.Customer.ToLower()}%"));
             if (request.StartDateLeft != default && request.StartDateRight != default)
                 predicate = predicate.And(project =>
                     project.StartDate >= request.StartDateLeft && 

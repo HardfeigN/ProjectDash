@@ -126,8 +126,10 @@ namespace ProjectDash.Web.Controllers
         /// <param name="id">Employee id (Guid)</param>
         /// <returns>Returns NoContent</returns>
         /// <response code="204">Success</response>
+        /// <response code="500">Error. Is the Employee a Project Leader?</response>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(Guid id)
         {
             var command = new DeleteEmployeeCommand

@@ -8,6 +8,7 @@ namespace ProjectDash.Application.ProjectDocuments.Queries.GetProjectDocumentLis
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public string Extension { get; set; }
         public Guid ProjectId { get; set; }
 
         public void Mapping(Profile profile)
@@ -17,6 +18,8 @@ namespace ProjectDash.Application.ProjectDocuments.Queries.GetProjectDocumentLis
                     opt => opt.MapFrom(projectDocument => projectDocument.Id))
                 .ForMember(projectDocumentDto => projectDocumentDto.Name,
                     opt => opt.MapFrom(projectDocument => projectDocument.Name))
+                .ForMember(projectDocumentDto => projectDocumentDto.Extension,
+                    opt => opt.MapFrom(projectDocument => projectDocument.Extension))
                 .ForMember(projectDocumentDto => projectDocumentDto.ProjectId,
                     opt => opt.MapFrom(projectDocument => projectDocument.ProjectId));
         }
